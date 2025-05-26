@@ -24,10 +24,10 @@ export const useHabitStore = defineStore('habit', () =>{
     habits.value = habits.value.filter(h => h.id !== habitId);
   }
 
-  function updateHabit(updatedHabit: Habit): void {
+  function updateHabit(updatedHabit: Partial<Habit>): void {
     const index = habits.value.findIndex(h => h.id === updatedHabit.id);
     if (index !== -1) {
-      habits.value[index] = updatedHabit;
+      habits.value[index] = {...updatedHabit, ...habits.value[index]};
     }
   }
 

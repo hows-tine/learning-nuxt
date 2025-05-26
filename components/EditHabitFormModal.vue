@@ -1,28 +1,35 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from '@nuxt/ui';
 import { object, string, type InferType } from 'yup'
+import type { Habit } from '~/types/habit.type';
+
+type PropType = {
+  open: boolean
+  habit: Habit
+}
+
+const props = defineProps<PropType>()
 
 const open = ref(false)
 const state = reactive({
-  title: ''
+  title: props.habit.name
 });
 
-const { addHabit } = useHabitStore();
+const { updateHabit } = useHabitStore();
 
 const schema = object({
   title: string().min(3, 'Habit should at least have 3 characters').required('You need to enter a habit')
 })
 
 async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
-  addHabit(state.title)
+  updateHabit({ name: state.title })
   state.title = ''
   open.value = false
 }
 </script>
 
 <template>
-  <UModal v-model:open="open" title="Create a habit" description="Build your habit today."
-    :ui="{ footer: 'justify-end' }">
+  <UModal v-model:open="open" :title="`Edit ${habit.name}`" :ui="{ footer: 'justify-end' }">
     <slot name="button"></slot>
     <template #body>
       <UForm :schema="schema" :state="state" @submit="onSubmit">

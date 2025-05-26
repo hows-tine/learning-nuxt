@@ -1,11 +1,17 @@
 <template>
   <div>
     <h2 class="text-lg font-semibold mb-2">{{ habit.name }}</h2>
-    <div class="flex flex-wrap gap-2">
-      <div v-for="date in dateRange" :key="date" class="w-6 h-6 rounded" :class="{
+    <div class="grid  grid-rows-7 grid-flow-col gap-1">
+      <!-- <div v-for="date in dateRange" :key="date" class="w-6 h-6 rounded" :class="{
         'bg-green-500': isCompleted(date),
         'bg-gray-300': !isCompleted(date)
-      }" :title="date" />
+      }" :title="date" /> -->
+      <UTooltip :text="date" v-for="date in dateRange" :key="date">
+        <div class="w-3 h-3 rounded" :class="{
+          'bg-green-500': isCompleted(date),
+          'dark:bg-slate-700 bg-slate-200': !isCompleted(date)
+        }" />
+      </UTooltip>
     </div>
   </div>
 </template>
