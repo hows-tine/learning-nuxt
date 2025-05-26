@@ -9,7 +9,7 @@
       <UTooltip :text="date" v-for="date in dateRange" :key="date">
         <div class="w-3 h-3 rounded" :class="{
           'bg-green-500': isCompleted(date),
-          'bg-gray-300': !isCompleted(date)
+          'dark:bg-slate-700 bg-slate-200': !isCompleted(date)
         }" />
       </UTooltip>
     </div>

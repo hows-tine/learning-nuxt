@@ -10,25 +10,29 @@ function handleSeeding() {
 
 <template>
   <UApp>
-    <div class="bg-cover min-w-screen min-h-screen grid">
-      <UCard class="m-auto w-fit sm:w-[400px] rounded-3xl ring-8">
-        <div class="border-b-2 border-[#e2e8f1] dark:border-[#1d283d] pb-4 mb-6">
+    <div
+      class="bg-cover min-w-screen min-h-screen grid bg-gradient-to-br from-slate-100 to-slate-300 dark:from-slate-700 dark:to-slate-900">
+      <UCard
+        class="m-auto w-fit sm:w-[400px] rounded-3xl ring-1 dark:ring-slate-700 backdrop-blur-2xl bg-white/30 shadow-2xl dark:bg-slate-800/30">
+        <div class="border-b-2 border-slate-100 dark:border-slate-700 pb-4 mb-6">
           <nav class="flex justify-between items-center gap-2">
             <UAvatar alt="Justine Castañeda" class="w-20 h-20" />
             <div class="flex gap-2 flex-wrap">
               <HabitFormModal>
                 <template #button>
-                  <UButton color="neutral" label="Create" class="rounded-full" icon="ant-design:plus-outlined" />
+                  <UButton color="success" variant="outline" label="Create" class="rounded-full backdrop-blur-xl"
+                    icon="ant-design:plus-outlined" />
                 </template>
               </HabitFormModal>
-              <UButton @click="handleSeeding" color="neutral" label="Seed" class="rounded-full"
-                icon="material-symbols:database" />
+              <UButton @click="handleSeeding" color="info" label="Seed" class="rounded-full"
+                icon="material-symbols:database" variant="outline" />
               <ColorModeButton />
             </div>
           </nav>
           <div class="my-3 text-xl font-semibold ">Justine Castañeda</div>
         </div>
-        <UCard v-if="habitStore.habits.length === 0" class=" ring-0 rounded-3xl">
+        <UCard v-if="habitStore.habits.length === 0"
+          class=" ring-0 rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 shadow-xl">
           <div class="flex flex-col gap-2 items-center">
             <div>
               <HabitFormModal>
