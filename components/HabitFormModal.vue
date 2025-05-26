@@ -21,10 +21,9 @@ async function onSubmit(event: FormSubmitEvent<InferType<typeof schema>>) {
 </script>
 
 <template>
-  <UModal v-model:open="open" title="Modal with footer" description="This is useful when you want a form in a Modal."
+  <UModal v-model:open="open" title="Create a habit" description="Build your habit today."
     :ui="{ footer: 'justify-end' }">
     <slot name="button"></slot>
-
     <template #body>
       <UForm :schema="schema" :state="state" @submit="onSubmit">
         <UFormField name="title" label="Habit">

@@ -6,6 +6,7 @@ const { habit } = defineProps<{ habit: Habit }>()
 
 const isDoneForToday = ref(getHabitFrequencyDate(habit.id, new Date()) !== undefined)
 const openCalendar = ref(false);
+const openEditHabit = ref(false);
 
 function handleClickHabit(habitId: number) {
   if (!isDoneForToday.value) {
@@ -31,12 +32,16 @@ function getFormattedDate(date: Date): string {
       <div class="flex gap-2">
         <UButton @click="openCalendar = !openCalendar" color="neutral" variant="subtle" class="rounded-full"
           icon="material-symbols:calendar-month-outline" />
+        <UButton icon='material-symbols:edit-outline' color="neutral" variant="subtle" class="rounded-full" />
         <UButton @click="() => handleClickHabit(habit.id)" :color="isDoneForToday ? 'error' : 'success'"
           class="rounded-full" :icon="isDoneForToday ? 'gridicons:cross-circle' : 'material-symbols:check-circle'" />
         <!-- <UCalendar class="w-[150px] h-[50px]" :month-controls="false" :year-controls="false" /> -->
       </div>
+      <UModal v-model:open="openEditHabit" :title="`Edit ${habit.name}`">
+        <template></template>
+      </UModal>
       <UModal v-model:open="openCalendar" :title="getFormattedDate(new Date())"
-        :description="isDoneForToday ? 'Congratulations! Habit has already been done for today.' : `It's not yet late to do the habit for today!`"
+        :description="isDoneForToday ? 'Congratulations! Habit has already been done for today.' : `It's not yet late to do the habit today!`"
         :ui="{ footer: 'justify-end' }">
         <template #body>
           <!-- <Calendar /> -->
