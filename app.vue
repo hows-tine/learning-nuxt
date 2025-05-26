@@ -6,6 +6,9 @@ function handleSeeding() {
   console.log(habitStore.habits);
 }
 
+useHead({
+  title: 'Habit Tracker'
+})
 </script>
 
 <template>
